@@ -24,10 +24,17 @@ profile_config = ProfileConfig(
 
 with DAG(
     dag_id="data_pipeline",
-    start_date=datetime(2022, 11, 27),
+    start_date=datetime(2024, 1, 1),
     schedule=None,
     catchup=False,
-) as dag:    
+    tags=['dbt-core', 'bigquery', 'data-mart'],
+    default_args = {
+    "owner": "Gustavo Souza",
+    "retries": 1,
+    "retry_delay": 0,
+    }
+       
+) as dag:  
 
     Start = EmptyOperator(task_id="Start")
 
