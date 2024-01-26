@@ -28,26 +28,63 @@ Instruções de instalação para Windows, Mac e Linux você encontra neste [lin
 1. Clone o repositório :
 ```bash
 git clone https://github.com/gustavobi4yourdata/Data-Engineering-Project-06.git
+cd dags/dbt/project_dbt
 ```
 
-2. Clone o repositório `Data-Engineering-Project-05`
+2. Instale as dependências do projeto :
 ```bash
-git clone https://github.com/gustavobi4yourdata/Data-Engineering-Project-05.git
+poetry install
 ```
 
-* Siga todas as instruções do `Project5` e rode o projeto `dbt-core`.
-* Renomei a pasta `Data-Engineering-Project-05` para `dbt`
-* Copie a pasta `dbt` para dentro da pasta `dags`
-* Renomei a ambiente virtual do projeto dbt-core `.venv` para `dbt_venv`
+3. Ative ambiente virtual :
+```bash
+poetry shell
+```
 
-3. Rode o comando
+4. Instale as dependências do projeto dbt :
+```bash
+poetry dps
+```
+
+5. Substitua e copie sua chave se segurança para dentro da pasta `bigquery`
+
+6. Ajuste o caminho do seu arquivo `profiles.yml` em `keyfile`
+
+7. Verifique teste de conexão remota com o bigquery bem como as dependências do projeto dbt-core
+```bash
+# Certifique-se que você esta no diretório do projeto: 'project_dbt'
+dbt debug
+```
+
+8. Rode o comando de execução para subir o Apache Airflow em docker container 
 ```bash
 astro dev start
 ```
 
-#### Seguindo todas os passos acima você vai ter instalado:
+## Estrutura do projeto
+```graphql
+Data-Engineering-Project-06/
+│
+├── dags/
+│    ├── dbt/
+│        ├── project_dbt            
+│             ├── analyses/
+│             ├── bigquery/     # Credencial de acesso remoto ao BigQuery
+│             ├── macros/
+│             ├── models/       # Modelo dbt-core (processo ETL)
+│                 ├── marts/    # Instruções SQL
+│                 ├── staging/  # Instruções SQL
+│             ├── seeds/
+│             ├── snapshot/
+│             └── tests/
+│── Northwind/
+│   ├── tables/                 # Dados importados para o BigQuery
+│── PowerBI/
+```
 
-* Apache Airflow rodando em docker
+#### Seguindo todos os passos acima você vai ter instalado:
+
+* Apache Airflow em docker container
 
 ![img.png](image/docker-apache-airflow.png)
 
@@ -57,17 +94,19 @@ astro dev start
 
 ### Para rodar o Data Pipeline no Apache Airflow
 
-1. Na guia `Admin` em `Connections` cria a conexão com o BigQuery
+Crie a conexão com o BigQuery na guia `Admin` em `Connections` 
 
 ![img.png](image/connection-bigquery.png)
 
-2. Habilite o `toggle` da dag `data_pipeline`
+### Para rodar o Data Pipeline no Apache Airflow
 
-3. Clique na dag `data_pipeline` e em seguida `Graph`
+1. Habilite o `toggle` da dag `data_pipeline`
 
-4. Rode o Data Pipeline em `Trigger DAG`
+2. Clique na dag `data_pipeline` e em seguida `Graph`
 
-5. Aguarde o Data Pipeline rodar.
+3. Rode o Data Pipeline em `Trigger DAG`
+
+4. Aguarde o Data Pipeline rodar.
 
 
 ## Contato
