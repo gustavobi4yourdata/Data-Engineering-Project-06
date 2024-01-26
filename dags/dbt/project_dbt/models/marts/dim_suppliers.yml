@@ -1,0 +1,109 @@
+version: 2
+
+models:
+    - name: dim_suppliers
+      description: Dimensão sobre dados dos fornecedores
+      tests:
+        - dbt_utils.equal_rowcount:
+            compare_model: ref('stg_suppliers')
+        - dbt_utils.unique_combination_of_columns:
+            combination_of_columns:
+              - supplier_id
+              - company_name
+              - contact_name
+              - contact_title
+              - address
+              - city
+              - region
+              - postal_code
+              - country
+              - phone
+              - fax
+              - homepage  
+      
+      columns:
+        - name: supplier_sk
+          description: Surrogate key da dim_suppliers
+          tests:
+            - unique
+            - not_null
+
+        - name: supplier_id
+          description: Primary key da dim_suppliers
+          tests:
+            - unique
+            - not_null
+        
+        - name: company_name
+          description: Nome da empresa
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: contact_name
+          description: Nome de contato
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: contact_title
+          description: Ocupação
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: address
+          description: Endereço
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: city
+          description: Cidade
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: region
+          description: Região
+          tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: postal_code
+          description: Código Postal
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: country
+          description: País
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: phone
+          description: Telefone
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: fax
+          description: Fax
+          tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+          
+        - name: homepage
+          description: Página
+          tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string

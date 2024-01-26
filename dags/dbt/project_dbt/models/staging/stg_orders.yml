@@ -1,0 +1,51 @@
+version: 2
+
+sources:
+  - name: northwind
+    description: This is a replica of the Postgres database used by client.
+    tables:
+      - name: orders
+        description: Esta tabela contém informações sobre os pedidos da Northwind.
+
+        columns:
+          - name: order_id
+            description: Primary key da tabela customers
+
+          - name: customer_id
+            description: Foreign key da tabela customers 
+
+          - name: employee_id
+            description: Foreign key da tabela employees
+
+          - name: order_date
+            description: Data do pedido
+
+          - name: required_date
+            description: Data requerida
+
+          - name: ship_region
+            description: Região do navio
+
+          - name: shipped_date
+            description: Data do envio
+
+          - name: shipper_id
+            description: Foreign key da tabela shippers
+
+          - name: ship_name
+            description: Nome do envio
+
+          - name: ship_address
+            description: Endereço de envio
+
+          - name: ship_city
+            description: Cidade de envio
+
+          - name: ship_postal_code
+            description: Código postal de envio
+
+          - name: ship_country
+            description: País de envio
+
+          - name: freight
+            description: Frete

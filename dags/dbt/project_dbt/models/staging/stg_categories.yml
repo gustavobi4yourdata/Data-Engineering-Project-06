@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: northwind
+    description: This is a replica of the Postgres database used by client.
+
+    tables:
+      - name: categories
+        description: Esta tabela contém informação sobre as categorias dos produtos da Northwind.
+        
+        columns:
+          - name: category_id
+            description: Primary key of the orders table
+            tests:
+              - unique
+              - not_null
+
+          - name: category_name
+            description: Categorias- Bevarages, Condiments, Confections, Dairy Products, Grains/Cereals,
+                         Meat/Poultry, Produce, Seafood
+
+          - name: description
+            description: Descrição da dim_categories

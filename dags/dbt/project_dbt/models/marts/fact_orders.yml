@@ -1,0 +1,107 @@
+version: 2
+
+models:
+  - name: fact_orders
+    description: Tabela fact_orders
+
+    columns:
+      - name: order_id
+        description: ID do pedido
+        tests:          
+          - not_null          
+
+      - name: product_sk    
+        description: Surrogate key de produtos
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: product_sk
+
+      - name: customer_sk    
+        description: Surrogate key de clientes
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_sk
+      
+      - name: employee_sk    
+        description: Surrogate key de funcionários
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_employees')
+              field: employee_sk      
+
+      - name: shipper_sk    
+        description: Surrogate key de transportadores 
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_shippers')
+              field: shipper_sk
+
+      - name: category_sk    
+        description: Surrogate key de categorias 
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_categories')
+              field: category_sk
+
+      - name: supplier_sk    
+        description: Surrogate key de fornecedores 
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_suppliers')
+              field: supplier_sk
+
+      - name: order_date
+        description: Ordem do pedido
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+
+      - name: required_date
+        description: Data do pedido
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+
+      - name: unit_price
+        description: Preço unitário
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: float64
+
+      - name: units_in_stock
+        description: Unidadades em estoque
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64
+
+      - name: units_on_order
+        description: Unidades sob pedido
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64 
+
+      - name: total
+        description: Total
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: float64
+
+      - name: discount
+        description: Disconto
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: float64

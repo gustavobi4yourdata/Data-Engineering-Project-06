@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+  - name: northwind
+    description: This is a replica of the Postgres database used by client.
+    tables:
+
+      - name: order_details
+        descripton: Esta tabela contém informação sobre os detalhes dos pedidos da Northwind.
+        columns:
+          - name: order_id
+            description: Primary key da tabela orders           
+
+          - name: product_id
+            description: Primary key da tabela products           
+
+          - name: unit_price
+            description: Preço unitário
+
+          - name: quantity
+            description: Quantidade
+
+          - name: product_name
+            description: Nome do produto
+
+          - name: supplier_id
+            description: Primary key da tabela suppliers            
+
+          - name: category_id
+            description: Primary key da tabela categories            
+
+          - name: total
+            description: Total
+
+          - name: discount
+            description: Disconto

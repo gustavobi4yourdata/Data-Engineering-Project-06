@@ -1,0 +1,47 @@
+version: 2
+
+sources:
+  - name: northwind
+    description: This is a replica of the Postgres database used by client.
+    tables:
+      - name: suppliers
+        description: Esta tabela contém informação sobre as categorias dos produtos da Northwind.
+        columns:
+          - name: supplier_id
+            description: Primary key da dim_suppliers
+            tests:
+              - unique
+              - not_null           
+
+          - name: company_name
+            description: Nome da empresa
+
+          - name: contact_name
+            description: Nome de contato
+
+          - name: contact_title
+            description: Ocupação
+
+          - name: address
+            description: Endereço
+
+          - name: city
+            description: Cidade
+
+          - name: region
+            description: Região
+
+          - name: postal_code
+            description: Código Postal
+
+          - name: country
+            description: País
+
+          - name: phone
+            description: Telefone
+
+          - name: fax
+            description: Fax
+            
+          - name: homepage
+            description: Página

@@ -1,0 +1,86 @@
+version: 2
+
+models:
+    - name: dim_products
+      description: Dimensão sobre dados dos produtos
+      tests:
+        - dbt_utils.equal_rowcount:
+            compare_model: ref('stg_products')
+        - dbt_utils.unique_combination_of_columns:
+            combination_of_columns:              
+              - product_id
+              - supplier_id	          	            
+              - category_id
+              - product_name
+              - unit_price            		          	            
+              - quantity_per_unit	      	        
+              - units_in_stock
+              - units_on_order
+              - is_discontinued
+              - reorder_level 
+      
+      columns:
+        - name: product_sk
+          description: Surrogate key da dim_products
+          tests:
+            - unique
+            - not_null
+
+        - name: product_id
+          description: Primary key da dim_products
+          tests:
+            - unique
+            - not_null
+
+        - name: supplier_id
+          description: Foreign key da tabela suppliers
+
+        - name: category_id
+          description: Foreign key da tabela categories
+
+        - name: product_name
+          description: Nome do produto
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: unit_price
+          description: Preço unitário
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: float64
+
+        - name: quantity_per_unit
+          description: Quantidade por unidade
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: units_in_stock
+          description: Unidades em estoque
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: int64
+
+        - name: units_on_order
+          description: Unidades sob pedido
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: int64
+
+        - name: is_discontinued
+          description: is_discontinued
+          tests:
+            - not_null
+          
+        - name: reorder_level
+          description: Nível de reabastecimento
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: int64

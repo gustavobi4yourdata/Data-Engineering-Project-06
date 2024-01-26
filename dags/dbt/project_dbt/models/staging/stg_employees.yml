@@ -1,0 +1,74 @@
+version: 2
+
+sources:
+  - name: northwind
+    description: This is a replica of the Postgres database used by client.
+    tables:
+      - name: employees
+        description: Esta tabela contém informação sobre as categorias dos produtos da Northwind.
+        columns:
+          - name: employee_id
+            description: Primary key of the orders table
+            tests:
+              - unique
+              - not_null
+
+          - name: first_name
+            description: Primeiro Nome
+
+          - name: last_name
+            description: Último nome
+
+          - name: full_name
+            description: Nome Completo
+
+          - name: title
+            description: Ocupação
+
+          - name: title_of_courtesy
+            description: Título
+
+          - name: birth_date
+            description: Data de Aniversário
+
+          - name: age
+            description: Idade
+
+          - name: hire_date
+            description: Data de admissão
+
+          - name: lenght_of_service
+            description: Tempo de Serviço
+
+          - name: address
+            description: Endereço
+
+          - name: city
+            description: Cidade
+
+          - name: region
+            description: Região
+
+          - name: postal_code
+            description: Código Postal
+
+          - name: country
+            description: País
+
+          - name: home_phone
+            description: Contato casa
+
+          - name: extension
+            description: Extensão
+
+          - name: photo
+            description: Foto
+
+          - name: notes
+            description: Notas
+
+          - name: reports_to
+            description: Cod Reportação
+
+          - name: photo_path
+            description: Caminho da pasta para foto

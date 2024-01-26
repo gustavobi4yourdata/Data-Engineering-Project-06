@@ -1,0 +1,40 @@
+version: 2
+
+models:
+    - name: dim_shippers
+      description: Dimensão sobre dados dos transportadores
+      tests:
+        - dbt_utils.equal_rowcount:
+            compare_model: ref('stg_shippers')
+        - dbt_utils.unique_combination_of_columns:
+            combination_of_columns:
+              - shipper_id
+              - company_name
+              - phone
+              
+      columns:
+        - name: shipper_sk
+          description: Surrogate key da dim_shippers
+          tests:
+            - unique
+            - not_null
+
+        - name: shipper_id
+          description: Primary key da dim_shippers
+          tests:
+            - unique
+            - not_null
+        
+        - name: company_name
+          description: Nome da empresa
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+        
+        - name: phone
+          description: Contato telefone
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string

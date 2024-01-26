@@ -1,0 +1,10 @@
+logs
+poetry.lock
+.DS_Store
+
+
+project_dbt/target/
+project_dbt/dbt_packages/
+project_dbt/logs/
+project_dbt/package-lock.yml
+project_dbt/.user.yml

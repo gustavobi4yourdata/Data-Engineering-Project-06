@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: northwind
+    description: This is a replica of the Postgres database used by client.
+    tables:
+      - name: shippers
+        description: Esta tabela contém informação sobre as categorias dos produtos da Northwind.
+        columns:
+          - name: shipper_id
+            description: Primary key of the orders table
+            tests:
+              - unique
+              - not_null           
+
+          - name: company_name
+            description: Nome da empresa
+
+          - name: phone
+            description: Contato telefone

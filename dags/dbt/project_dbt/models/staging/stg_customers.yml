@@ -1,0 +1,45 @@
+version: 2
+
+sources:
+  - name: northwind
+    description: This is a replica of the Postgres database used by client.
+    
+    tables:
+      - name: customers
+        description: Dimensão sobre dados dos clientes.
+        columns:
+          - name: customer_id
+            description: Primary key of the orders table
+            tests:
+              - unique
+              - not_null
+
+          - name: company_name
+            description: Nome Emppresa
+
+          - name: contact_name
+            description: Nome do Contato
+
+          - name: contact_title
+            description: Ocupação 
+
+          - name: address
+            description: Endereço
+
+          - name: city
+            description: Cidade
+
+          - name: region
+            description: Região
+
+          - name: postal_code
+            description: Código Postal
+
+          - name: country
+            description: País
+
+          - name: phone
+            description: Telefone de Contato
+
+          - name: fax
+            description: Fax

@@ -1,0 +1,178 @@
+version: 2
+
+models:
+    - name: dim_employees
+      description: Dimensão sobre dados dos funcionários
+      tests:
+        - dbt_utils.equal_rowcount:
+            compare_model: ref('stg_employees')
+        - dbt_utils.unique_combination_of_columns:
+            combination_of_columns:              
+              - employee_id
+              - first_name		        				
+              - last_name
+              - full_name                  			
+              - title	            			
+              - title_of_courtesy
+              - birth_date
+              - age
+              - hire_date
+              - lenght_of_service
+              - address	            			
+              - city	            			
+              - region	            			
+              - postal_code	        			
+              - country	            			
+              - home_phone	        			
+              - extension	        				
+              - photo	            			
+              - notes	            			
+              - reports_to	        				
+              - photo_path
+      
+      columns:
+        - name: employee_sk
+          description: Surrogate key da dim_employees
+          tests:
+            - unique
+            - not_null
+
+        - name: employee_id
+          description: Primary key of dim_employees
+          tests:
+            - unique
+            - not_null
+
+        - name: first_name
+          desctiption: Primeiro nome
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: last_name
+          desctiption: Último nome
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: full_name
+          desctiption: Nome Completo
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: title
+          desctiption: Ocupação
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: title_of_courtesy
+          desctiption: Título
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: birth_date
+          desctiption: Data de Aniversário
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: date
+
+        - name: age
+          desctiption: Idade
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: int64
+
+        - name: hire_date
+          desctiption: Data de admissão
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: date
+
+        - name: lenght_of_service
+          desctiption: Tempo de Serviço
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: int64
+
+        - name: address
+          desctiption: Endereço
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: city
+          desctiption: Cidade
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: region
+          desctiption: Região
+          tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: postal_code
+          desctiption: Código Postal
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: country
+          desctiption: País
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: home_phone
+          desctiption: Contato casa
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: extension
+          desctiption: Extensão
+
+        - name: photo
+          desctiption: Foto
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: notes
+          desctiption: Notas
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
+
+        - name: reports_to
+          desctiption: Cod reportação
+          tests:
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: int64
+
+        - name: photo_path
+          desctiption: Caminho da pasta para foto
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_of_type:
+                column_type: string
