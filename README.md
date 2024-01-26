@@ -43,7 +43,7 @@ poetry shell
 
 4. Instale as dependências do projeto dbt :
 ```bash
-dbt dps
+dbt deps
 ```
 
 5. Substitua e copie sua chave se segurança para dentro da pasta `bigquery`
