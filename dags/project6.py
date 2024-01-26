@@ -31,7 +31,7 @@ with DAG(
 
     Start = EmptyOperator(task_id="Start")
 
-    Projeto4 = DbtTaskGroup(
+    data_pipeline = DbtTaskGroup(
 
         group_id="data_pipeline",       
         project_config=ProjectConfig("/usr/local/airflow/dags/dbt/project_dbt/"),
@@ -44,4 +44,4 @@ with DAG(
 
     End = EmptyOperator(task_id="End")
 
-    Start >> Projeto4 >> End
+    Start >> data_pipeline >> End
