@@ -7,6 +7,8 @@
 
 Este repositório tem como objetivo usar o Apache Airflow para orquestrar o Data Pipeline do projeto dbt usando o Data Warehouse moderno BigQuery e o Power Bi como ferramenta de data viz.
 
+**YouTube**: Clique para assistir a instalação e configuração do projeto no [link](https://youtu.be/26t2m8zub18)
+
 ### Pré-requisitos para rodar o projeto
 
 * **Conta Google Cloud Provider**: Cadastro, criação de projeto e chave de acesso para conexão remota com BigQuery.
