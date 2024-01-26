@@ -92,7 +92,6 @@ Data-Engineering-Project-06/
 
 ![img.png](image/user-interface-apache-airflow.png)
 
-### Para rodar o Data Pipeline no Apache Airflow
 
 Crie a conexão com o BigQuery na guia `Admin` em `Connections` 
 
